@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'PostController@getPostIndex')->name('post.index');
+Route::get('/post/{post_id}', 'PostController@getSinglePost')->name('post.single');
+
+Route::get('/about', function () {
+    return view("frontend.others.about");
+})->name('about');
+
+Route::get('/contact', 'ContactMessageController@getContactIndex')->name('contact');
