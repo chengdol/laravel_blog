@@ -19,7 +19,7 @@ class CreateContactMessagesTable extends Migration
             $table->string('sender');
             // string type to store email and must be unique
             // validation also can check unique
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('subject');
             $table->text('body');
         });

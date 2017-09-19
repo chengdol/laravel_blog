@@ -30,6 +30,6 @@ class CreatePostCategoryTable extends Migration
      */
     public function down()
     {
-        Schame::dropIfExists('posts_categories');
+        Schema::dropIfExists('posts_categories');
     }
 }
