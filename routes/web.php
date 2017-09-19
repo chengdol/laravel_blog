@@ -19,3 +19,9 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/contact', 'ContactMessageController@getContactIndex')->name('contact');
+
+Route::group(['prefix' => '/admin'], function () {
+
+    Route::get('/', 'AdminController@getIndex')->name('admin.index');
+
+});
