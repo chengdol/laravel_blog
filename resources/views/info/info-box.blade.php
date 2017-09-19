@@ -1,9 +1,5 @@
 @section("styles")
     <link type="text/css" rel="stylesheet" href="{{ URL::asset('css/client_side/common.css') }}">
-@endsection
-
-@section("styles")
-    <link type="text/css" rel="stylesheet" href="{{ URL::asset('css/client_side/common.css') }}">
 @append
 
 {{--Session info--}}

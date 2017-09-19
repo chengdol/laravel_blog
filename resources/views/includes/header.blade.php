@@ -1,5 +1,5 @@
 <header>
-    <nav>
+    <nav class="main-nav">
         <ul>
             <li><a href="{{ route('post.index') }}">Blog</a></li>
             <li><a href="{{ route('about') }}">About Me</a></li>
