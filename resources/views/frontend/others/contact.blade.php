@@ -10,7 +10,7 @@
 
 @section("content")
     @include("info.info-box")
-    <form action="" method="post" id="contact-form">
+    <form action="#" method="post" id="contact-form">
         <div class="input-group">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name">

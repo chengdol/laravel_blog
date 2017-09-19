@@ -26,11 +26,12 @@ h3 {
 
 
 .btn {
+    height: 35px;
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid #8900c6;
     border-radius: 3px;
-    padding: 4px 6px;
+    padding: 2px 3px;
     background-color: #8900c6;
     color: white;
     transition: background-color 0.3s;
@@ -70,7 +71,7 @@ h3 {
     border-bottom: 1px solid lightgray;
     box-shadow: 0px 2px 2px lightgray;
     text-align: center;
-    font-size: 28px;
+    font-size: 25px;
     background-color: #ad67d2;
 }
 
@@ -84,8 +85,8 @@ h3 {
 .main-nav ul li,
 .main-footer ul li {
     display: inline-block;
-    padding: 32px 16px;
-    transition: background-color 0.2s;
+    padding: 15px 25px;
+    transition: background-color 0.3s;
 }
 
 .main-nav li:hover {
