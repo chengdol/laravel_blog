@@ -13,7 +13,14 @@ class CreatePostCategoryTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('posts_categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('post_id')->unsigned();
+            $table->foreign('post_id')->references('id')->on('posts');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
+
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class CreatePostCategoryTable extends Migration
      */
     public function down()
     {
-        //
+        Schame::dropIfExists('posts_categories');
     }
 }

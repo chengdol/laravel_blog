@@ -16,6 +16,12 @@ class CreateContactMessagesTable extends Migration
         Schema::create('contact_messages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('sender');
+            // string type to store email and must be unique
+            // validation also can check unique
+            $table->string('email')->unique();
+            $table->string('subject');
+            $table->text('body');
         });
     }
 
