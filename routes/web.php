@@ -20,8 +20,14 @@ Route::get('/about', function () {
 
 Route::get('/contact', 'ContactMessageController@getContactIndex')->name('contact');
 
+
+
+
 Route::group(['prefix' => '/admin'], function () {
 
     Route::get('/', 'AdminController@getIndex')->name('admin.index');
+    // same name for get and post
+    Route::get('/post/create', 'PostController@getCreatePost')->name('admin.post.create');
+    Route::post('/post/create', 'PostController@postCreatePost')->name('admin.post.create');
 
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -23,6 +24,28 @@ class PostController extends Controller
         return view(  $side . ".blog.single");
     }
 
+    public function getCreatePost()
+    {
+        // TODO: fetch and pass categories
+        return view('admin.blog.create-post');
+    }
 
+    public function postCreatePost(Request $req)
+    {
+        $this->validate($req, [
+            'title' => 'required|max:120|unique:posts',
+            'author' => 'required|max:80',
+            'body' => 'required'
+        ]);
+
+        $post = new Post();
+        $post->title = $req['title'];
+        $post->author = $req['author'];
+        $post->body = $req['body'];
+        $post->save();
+        // TODO: attach category
+
+        return redirect()->route('admin.index')->with(['success' => 'Post created successfully!']);
+    }
 
 }

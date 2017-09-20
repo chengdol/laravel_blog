@@ -19,7 +19,7 @@
 @if(count($errors) > 0)
     <section class="info-box fail">
         <ul>
-            @foreach($errors->all as $err)
+            @foreach($errors->all() as $err)
                 <li>{{ $err }}</li>
             @endforeach
         </ul>

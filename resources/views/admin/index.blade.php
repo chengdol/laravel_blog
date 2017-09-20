@@ -12,7 +12,7 @@
             <header>
                 <nav>
                     <ul>
-                        <li><a href="" class="btn">New post</a></li>
+                        <li><a href="{{ route('admin.post.create') }}" class="btn">New post</a></li>
                         <li><a href="" class="btn">Show all posts</a></li>
                     </ul>
                 </nav>
@@ -24,7 +24,7 @@
                     {{-- else --}}
                     <li>
                         <article>
-                            <div class="info">
+                            <div class="post-info">
                                 <h3>Post title</h3>
                                 <span class="info">Post author | date</span>
                                 <div class="edit">
