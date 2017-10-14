@@ -4,14 +4,31 @@
     Blog Index
 @endsection
 
+@section("styles")
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+@endsection
+
 @section("content")
-    <article>
-        <h3>Post title</h3>
-        <span class="subtitle">Post Author | Date</span>
-        <p>Post body</p>
-        <a href="#">Read more</a>
-    </article>
-    <section class="pagination">
-        {{--TODO: pagination--}}
-    </section>
+    {{--loop through all posts--}}
+    @foreach($posts as $post)
+        <article class="blog-post">
+            <h3>{{ $post->title }}</h3>
+            <span class="subtitle">{{ $post->author }} | {{ $post->created_at }}</span>
+            <p>{{ $post->body }}</p>
+            <a href="#">Read more</a>
+        </article>
+    @endforeach
+    {{-- pagination--}}
+    {{-- more than one page--}}
+    @if($posts->lastPage() > 1)
+        <section class="pagination">
+            {{-- here we use front awesome, need to be included--}}
+            @if($posts->currentPage() != 1)
+                <a href="{{ $posts->previousPageUrl() }}"><i class="icon-hand-left"></i></a>
+            @endif
+            @if($posts->currentPage() != $posts->lastPage())
+                <a href="{{ $posts->nextPageUrl() }}"><i class="icon-hand-right"></i></a>
+            @endif
+        </section>
+    @endif
 @endsection

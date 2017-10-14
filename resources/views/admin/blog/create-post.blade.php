@@ -27,8 +27,11 @@
                 </select>
                 <button type="button" class="btn">Add category</button>
                 <div class="added-categories">
+                    {{--later use js to insert categories--}}
+                    {{-- clickable to be removed--}}
                     <ul></ul>
                 </div>
+                {{-- what is this? --}}
                 <input type="hidden" name="categories" id="categories">
             </div>
 

@@ -29,5 +29,6 @@ Route::group(['prefix' => '/admin'], function () {
     // same name for get and post
     Route::get('/post/create', 'PostController@getCreatePost')->name('admin.post.create');
     Route::post('/post/create', 'PostController@postCreatePost')->name('admin.post.create');
-
+    // posts list
+    Route::get('/posts', 'PostController@getAdminPostIndex')->name('admin.post.index');
 });
