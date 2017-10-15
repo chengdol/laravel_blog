@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
+    <br>
+    @include('info.info-box')
     <div class="container">
-        @include('info.info-box')
-
         <form action="{{ route('admin.post.update') }}" method="post">
             <div class="input-group">
                 <label for="title">Title</label>

@@ -16,7 +16,7 @@
         {{-- loop posts--}}
         <section class="list">
             @if(count($posts) == 0)
-                <li>No post</li>
+                <h3>No Post</h3>
             @else
                 @foreach($posts as $post)
                     <article>
@@ -28,7 +28,7 @@
                                     <ul>
                                         <li><a href="{{ route('admin.post.single', ['side' => 'admin', 'post_id' => $post->id]) }}">view</a></li>
                                         <li><a href="{{ route('admin.post.edit', ['post_id' => $post->id]) }}">edit</a></li>
-                                        <li><a href="" class="danger">delete</a></li>
+                                        <li><a href="{{ route('admin.post.delete', ['post_id' => $post->id]) }}" class="danger">delete</a></li>
                                     </ul>
                                 </nav>
                             </div>

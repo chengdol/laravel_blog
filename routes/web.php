@@ -38,4 +38,7 @@ Route::group(['prefix' => '/admin'], function () {
     // edit then update
     Route::get('/post/{post_id}/edit', 'PostController@getEditPost')->name('admin.post.edit');
     Route::post('/post/edit', 'PostController@postEditPost')->name('admin.post.update');
+
+    // delete post
+    Route::get('/post/{post_id}/delete', 'PostController@getPostDelete')->name('admin.post.delete');
 });

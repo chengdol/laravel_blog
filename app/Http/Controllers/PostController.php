@@ -125,4 +125,23 @@ class PostController extends Controller
             ->with(['success' => 'post updated successfully!']);
     }
 
+    // delete post
+    public function getPostDelete($post_id)
+    {
+        $post = Post::find($post_id);
+        if (!$post)
+        {
+            // redirect
+            return redirect()
+                ->route('admin.index')
+                ->with(['fail' => 'post not found!']);
+        }
+        // delete
+        $post->delete();
+
+        return redirect()
+            ->route('admin.index')
+            ->with(['success' => 'post delete successfully!']);
+    }
+
 }
