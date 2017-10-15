@@ -26,11 +26,16 @@ Route::get('/contact', 'ContactMessageController@getContactIndex')->name('contac
 Route::group(['prefix' => '/admin'], function () {
 
     Route::get('/', 'AdminController@getIndex')->name('admin.index');
-    // same name for get and post
+    // same name for get and post. the url should be the same!!
     Route::get('/post/create', 'PostController@getCreatePost')->name('admin.post.create');
     Route::post('/post/create', 'PostController@postCreatePost')->name('admin.post.create');
     // posts list
     Route::get('/posts', 'PostController@getAdminPostIndex')->name('admin.post.index');
-    // single psot
+    // single post
     Route::get('/post/{post_id}&{side}', 'PostController@getSinglePost')->name('admin.post.single');
+
+    // edit post
+    // edit then update
+    Route::get('/post/{post_id}/edit', 'PostController@getEditPost')->name('admin.post.edit');
+    Route::post('/post/edit', 'PostController@postEditPost')->name('admin.post.update');
 });

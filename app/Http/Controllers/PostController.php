@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -80,6 +81,48 @@ class PostController extends Controller
 
 
         return redirect()->route('admin.index')->with(['success' => 'Post created successfully!']);
+    }
+
+
+
+    // edit post
+    public function getEditPost($post_id)
+    {
+        $post = Post::find($post_id);
+        if (!$post)
+        {
+            // redirect
+            return redirect()->route('admin.index')->with(['fail' => 'Post not found!']);
+        }
+        // find categories
+
+
+        return view('admin.blog.edit-post',['post' => $post]);
+    }
+
+    public function postEditPost(Request $req)
+    {
+        // validate input
+        $this->validate($req, [
+            // title no need unique
+            'title' => 'required|max:120',
+            'author' => 'required|max:80',
+            'body' => 'required'
+        ]);
+        // fetch previous post
+        $post = Post::find($req['post_id']);
+        $post->title = $req['title'];
+        $post->author = $req['author'];
+        $post->body = $req['body'];
+        // here need to check failed!
+        $post->update();
+
+        // categories ...
+
+
+        return redirect()
+            ->route('admin.post.single', ['post_id' => $post->id, 'side' => 'admin'])
+            ->with(['success' => 'post updated successfully!']);
     }
 
 }

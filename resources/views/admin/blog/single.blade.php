@@ -6,10 +6,12 @@
 @endsection
 
 @section("content")
+    @include('info.info-box')
+    <br>
     <div class="container">
         {{-- edit and delete --}}
         <section id="post-admin">
-            <a href="" class="btn">Edit Post</a>
+            <a href="{{ route('admin.post.edit', ['post_id' => $post->id]) }}" class="btn">Edit Post</a>
             <a href="" class="btn danger">Delete Post</a>
         </section>
         {{-- post details --}}
