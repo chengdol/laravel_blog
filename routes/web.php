@@ -36,11 +36,11 @@ Route::group(['prefix' => '/admin'], function () {
 
     // edit post
     // edit then update
-    Route::get('/post/{post_id}/edit', 'PostController@getEditPost')->name('admin.post.edit');
+    Route::get('/post/edit/{post_id}', 'PostController@getEditPost')->name('admin.post.edit');
     Route::post('/post/edit', 'PostController@postEditPost')->name('admin.post.update');
 
     // delete post
-    Route::get('/post/{post_id}/delete', 'PostController@getPostDelete')->name('admin.post.delete');
+    Route::get('/post/delete/{post_id}', 'PostController@getPostDelete')->name('admin.post.delete');
 
     // category
     Route::get('/category', 'CategoryController@getCategoryIndex')->name('admin.category.index');
