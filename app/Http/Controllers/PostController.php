@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+
 
 class PostController extends Controller
 {

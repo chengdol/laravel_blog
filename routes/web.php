@@ -41,4 +41,7 @@ Route::group(['prefix' => '/admin'], function () {
 
     // delete post
     Route::get('/post/{post_id}/delete', 'PostController@getPostDelete')->name('admin.post.delete');
+
+    // category
+    Route::get('/category', 'CategoryController@getCategoryIndex')->name('admin.category.index');
 });
