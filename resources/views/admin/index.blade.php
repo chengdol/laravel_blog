@@ -31,7 +31,7 @@
                                         <div class="edit">
                                             <nav>
                                                 <ul>
-                                                    <li><a href="">view</a></li>
+                                                    <li><a href="{{ route('admin.post.single', ['side' => 'admin', 'post_id' => $post->id]) }}">view</a></li>
                                                     <li><a href="">edit</a></li>
                                                     <li><a href="" class="danger">delete</a></li>
                                                 </ul>

@@ -11,7 +11,7 @@ class PostController extends Controller
     public function getPostIndex()
     {
         // fetch posts with pagination then rendering
-        $posts = Post::paginate(5);
+        $posts = Post::paginate(3);
         // shorten post body length
         foreach ($posts as $post)
         {
@@ -46,8 +46,14 @@ class PostController extends Controller
      */
     public function getSinglePost($post_id, $side = "frontend")
     {
-        // TODO: fetch post then rendering
-        return view(  $side . ".blog.single");
+        // $side is default parameter, can ignore it when passing parameters
+        $post = Post::find($post_id);
+        // check if post exist?
+        if (!$post)
+        {
+            return redirect()->route('post.index')->with(['fail' => 'post does not exist!']);
+        }
+        return view(  $side . ".blog.single", ['post' => $post ]);
     }
 
     public function getCreatePost()
