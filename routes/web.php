@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PostController@getPostIndex')->name('post.index');
+// single post detail
 Route::get('/post/{post_id}', 'PostController@getSinglePost')->name('post.single');
 
 Route::get('/about', function () {
@@ -19,6 +20,8 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/contact', 'ContactMessageController@getContactIndex')->name('contact');
+// send contact message
+Route::post('/contact/send', 'ContactMessageController@postContactMessage')->name('contact.send');
 
 
 
