@@ -26,17 +26,22 @@
                 <label for="category_select">Add categories</label>
                 <select name="category_select" id="category_select">
                     {{--foreach loop--}}
-                    <option value="Dummy">Dummy</option>
-                    <option value="Dummy">Dummy</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                 </select>
                 <button type="button" class="btn">Add category</button>
                 <div class="added-categories">
                     {{--later use js to insert categories--}}
-                    {{-- clickable to be removed--}}
-                    <ul></ul>
+                    {{-- clickable to be remove the category attached with post--}}
+                    <ul>
+                        @foreach($post_categories as $p_category)
+                            <li><a href="#" data-id="{{ $p_category->id }}">{{ $p_category->name }}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
-                {{-- what is this? --}}
-                <input type="hidden" name="categories" id="categories">
+                {{-- js will convert catepories id to string separate by comma--}}
+                <input type="hidden" name="categories" id="categories" value="{{ implode(',', $post_categories_ids) }}">
             </div>
 
             <div class="input-group">

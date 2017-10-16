@@ -54,13 +54,17 @@ class PostController extends Controller
         {
             return redirect()->route('post.index')->with(['fail' => 'post does not exist!']);
         }
+        // fetch categories
+
+
         return view(  $side . ".blog.single", ['post' => $post ]);
     }
 
     public function getCreatePost()
     {
-        // TODO: fetch and pass categories
-        return view('admin.blog.create-post');
+        // find categories
+        $categories = Category::all();
+        return view('admin.blog.create-post', ['categories' => $categories]);
     }
 
     public function postCreatePost(Request $req)
@@ -94,10 +98,21 @@ class PostController extends Controller
             // redirect
             return redirect()->route('admin.index')->with(['fail' => 'Post not found!']);
         }
-        // find categories
+        // find all categories
+        $categories = Category::all();
+        // find categories of this post
+        $post_categories = $post->categories;
+        // create ids array
+        $post_categories_ids = array();
+        foreach ($post_categories as $p_c)
+        {
+            $post_categories_ids[] = $p_c->id;
+        }
 
-
-        return view('admin.blog.edit-post',['post' => $post]);
+        return view('admin.blog.edit-post',['post' => $post
+            , 'categories' => $categories
+            , 'post_categories' => $post_categories
+            , 'post_categories_ids' => $post_categories_ids]);
     }
 
     public function postEditPost(Request $req)
@@ -136,9 +151,10 @@ class PostController extends Controller
                 ->route('admin.index')
                 ->with(['fail' => 'post not found!']);
         }
+        // detach categories
+
         // delete
         $post->delete();
-
         return redirect()
             ->route('admin.index')
             ->with(['success' => 'post delete successfully!']);
