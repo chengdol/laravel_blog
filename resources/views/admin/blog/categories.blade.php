@@ -32,8 +32,10 @@
                             <nav>
                                 <ul>
                                     <li class="category-edit"><input type="text" /></li>
-                                    <li><a href="">Edit</a></li>
-                                    <li><a href="" class="danger">Delete</a></li>
+                                    {{-- here we actually use AJAX, no route--}}
+                                    <li><a href="#">Edit</a></li>
+                                    {{-- here we actually use AJAX, no route--}}
+                                    <li><a href="#" class="danger">Delete</a></li>
                                 </ul>
                             </nav>
                         </div>

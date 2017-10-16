@@ -46,7 +46,8 @@ Route::group(['prefix' => '/admin'], function () {
     Route::get('/category', 'CategoryController@getCategoryIndex')->name('admin.category.index');
     // see categories.js AJAX request
     Route::post('/category/create', 'CategoryController@postCategoryCreate')->name('admin.category.create');
-//    Route::post('/category/update/{}', )
-
+    Route::post('/category/update', 'CategoryController@postCategoryUpdate')->name('admin.category.update');
+    Route::get('/category/delete/{category_id}', 'CategoryController@getCategoryDelete')
+        ->name('admin.category.delete');
     // contact
 });

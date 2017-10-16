@@ -32,5 +32,37 @@ class CategoryController extends Controller
         return Response::json(['message' => 'Create category failed!'], 404);
     }
 
+    public function getCategoryDelete($category_id)
+    {
+        $category = Category::find($category_id);
+        // detach post
 
+        if ($category->delete())
+        {
+            return Response::json(['message' => 'Delete Category successfully!'], 200);
+        }
+        return Response::json(['message' => 'Delete Category failed!'], 404);
+    }
+
+    public function postCategoryUpdate(Request $req)
+    {
+        // valid input
+        $this->validate($req, [
+            'name' => 'required|unique:categories'
+        ]);
+        // find
+        $category = Category::find($req['category_id']);
+        if (!$category)
+        {
+            return Response::json(['message' => 'Update Category failed!'], 404);
+        }
+        // detach
+
+        // update
+        $category->name = $req['name'];
+        $category->update();
+        // return json
+        return Response::json(['message' => 'Update Category successfully!'
+            , 'new_name' => $category->name], 200);
+    }
 }

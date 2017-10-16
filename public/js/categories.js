@@ -4,7 +4,7 @@ var tid = setInterval(function () {
     }
     clearInterval(tid);
 
-    var editSections = document.getElementsByClassName('edit');
+        var editSections = document.getElementsByClassName('edit');
 
     for (i = 0; i < editSections.length; i++) {
         editSections[i].firstElementChild.firstElementChild.children[1].firstChild.addEventListener('click', startEdit);
@@ -36,7 +36,8 @@ function saveEdit(event) {
         alert("Please enter a valid Category name!");
         return;
     }
-    ajax("POST", "/admin/categories/update", "name=" + categoryName + "&category_id=" + categoryId, endEdit, [event]);
+    // encode for + sign and other signs that have particular meaning in url
+    ajax("POST", "/admin/category/update", "name=" + encodeURIComponent(categoryName) + "&category_id=" + categoryId, endEdit, [event]);
 }
 
 function endEdit(params, success, responseObj) {
@@ -69,7 +70,7 @@ function createNewCategory(event) {
         alert("Please enter a valid Category name!");
         return;
     }
-    ajax("POST", "/admin/category/create", "name=" + name, newCategoryCreated, [name]);
+    ajax("POST", "/admin/category/create", "name=" + encodeURIComponent(name), newCategoryCreated, [name]);
 }
 
 function newCategoryCreated(params, success, responseObj) {
