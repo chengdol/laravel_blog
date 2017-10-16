@@ -36,7 +36,7 @@
                     {{-- clickable to be remove the category attached with post--}}
                     <ul>
                         @foreach($post_categories as $p_category)
-                            <li><a href="#" data-id="{{ $p_category->id }}">{{ $p_category->name }}</a></li>
+                            <li><a href="#" data-category_id="{{ $p_category->id }}">{{ $p_category->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
