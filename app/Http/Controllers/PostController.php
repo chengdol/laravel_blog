@@ -81,8 +81,17 @@ class PostController extends Controller
         $post->author = $req['author'];
         $post->body = $req['body'];
         $post->save();
-        // TODO: attach category
-
+        // attach categories
+        if (strlen($req['categories']) > 0)
+        {
+            // id array
+            $categoriesIds = explode(',', $req['categories']);
+            foreach ($categoriesIds as $cIds)
+            {
+                // attach with id!
+                $post->categories()->attach($cIds);
+            }
+        }
 
         return redirect()->route('admin.index')->with(['success' => 'Post created successfully!']);
     }
@@ -131,9 +140,19 @@ class PostController extends Controller
         $post->body = $req['body'];
         // here need to check failed!
         $post->update();
-
-        // categories ...
-
+        // first remove all attached categories
+        $post->categories()->detach();
+        // attach categories
+        if (strlen($req['categories']) > 0)
+        {
+            // id array
+            $categoriesIds = explode(',', $req['categories']);
+            foreach ($categoriesIds as $cIds)
+            {
+                // attach with id!
+                $post->categories()->attach($cIds);
+            }
+        }
 
         return redirect()
             ->route('admin.post.single', ['post_id' => $post->id, 'side' => 'admin'])

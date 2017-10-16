@@ -34,6 +34,7 @@
                     </ul>
                 </div>
                 {{-- js will convert catepories id to string separate by comma--}}
+                {{-- this input field will pass to server when submit--}}
                 <input type="hidden" name="categories" id="categories">
             </div>
 
