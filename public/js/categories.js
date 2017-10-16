@@ -36,7 +36,7 @@ function saveEdit(event) {
         alert("Please enter a valid Category name!");
         return;
     }
-    ajax("POST", "/admin/blog/categories/update", "name=" + categoryName + "&category_id=" + categoryId, endEdit, [event]);
+    ajax("POST", "/admin/categories/update", "name=" + categoryName + "&category_id=" + categoryId, endEdit, [event]);
 }
 
 function endEdit(params, success, responseObj) {
@@ -69,7 +69,7 @@ function createNewCategory(event) {
         alert("Please enter a valid Category name!");
         return;
     }
-    ajax("POST", "/admin/blog/category/create", "name=" + name, newCategoryCreated, [name]);
+    ajax("POST", "/admin/category/create", "name=" + name, newCategoryCreated, [name]);
 }
 
 function newCategoryCreated(params, success, responseObj) {
@@ -87,7 +87,7 @@ function deleteCategory(event) {
     event.preventDefault();
     event.target.removeEventListener('click', startDelete);
     var categoryId = event.target.parentNode.parentNode.parentNode.parentNode.previousElementSibling.dataset['id'];
-    ajax("GET", "/admin/blog/category/" + categoryId + "/delete", null, categoryDeleted, [event.target.parentNode.parentNode.parentNode.parentNode.parentNode]);
+    ajax("GET", "/admin/category/delete/" + categoryId, null, categoryDeleted, [event.target.parentNode.parentNode.parentNode.parentNode.parentNode]);
 }
 
 function categoryDeleted(params, success, responseObj) {
@@ -115,6 +115,7 @@ function ajax(method, url, params, callback, callbackParams) {
     http.onreadystatechange = function() {
         if (http.readyState == XMLHttpRequest.DONE ) {
             if(http.status == 200){
+                // success
                 var obj = JSON.parse(http.responseText);
                 console.log(obj);
                 callback(callbackParams, true, obj);
@@ -125,6 +126,7 @@ function ajax(method, url, params, callback, callbackParams) {
 
             }
             else {
+                // not unique category name
                 var obj = JSON.parse(http.responseText);
                 if (obj.message) {
                     alert(obj.message);
@@ -135,7 +137,7 @@ function ajax(method, url, params, callback, callbackParams) {
             }
         }
     };
-
+    // baseUrl from admin-main blade
     http.open(method, baseUrl + url, true);
     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http.setRequestHeader('X-Requested-With', 'XMLHttpRequest');

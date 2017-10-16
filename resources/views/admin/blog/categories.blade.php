@@ -9,7 +9,7 @@
     <div class="container">
         <section id="category-admin">
             {{--here we will use AJAX--}}
-            <form action="" method="post">
+            <form action="{{ route('admin.category.create') }}" method="post">
                 <div class="input-group">
                     <label for="name">Category Name</label>
                     <input type="text" name="name" id="name">
@@ -58,6 +58,7 @@
 
 @section('scripts')
     <script type="text/javascript">
+        {{-- laravel CSRF --}}
         var token = "{{ Session::token() }}";
     </script>
     <script type="text/javascript" src="{{ URL::asset('js/categories.js') }}"></script>

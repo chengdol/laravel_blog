@@ -44,4 +44,9 @@ Route::group(['prefix' => '/admin'], function () {
 
     // category
     Route::get('/category', 'CategoryController@getCategoryIndex')->name('admin.category.index');
+    // see categories.js AJAX request
+    Route::post('/category/create', 'CategoryController@postCategoryCreate')->name('admin.category.create');
+//    Route::post('/category/update/{}', )
+
+    // contact
 });
