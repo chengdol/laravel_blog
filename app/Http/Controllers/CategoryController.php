@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -36,6 +37,8 @@ class CategoryController extends Controller
     {
         $category = Category::find($category_id);
         // detach post
+        // Integrity constraint violation if not detach
+        $category->posts()->detach();
 
         if ($category->delete())
         {

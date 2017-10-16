@@ -142,6 +142,7 @@ function ajax(method, url, params, callback, callbackParams) {
     http.open(method, baseUrl + url, true);
     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    // send request with parameters
     http.send(params + "&_token=" + token);
 }
 

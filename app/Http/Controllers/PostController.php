@@ -90,6 +90,8 @@ class PostController extends Controller
             {
                 // attach with id!
                 $post->categories()->attach($cIds);
+//                $category = Category::find($cIds);
+//                $category->posts()->attach($post->id);
             }
         }
 
@@ -171,6 +173,8 @@ class PostController extends Controller
                 ->with(['fail' => 'post not found!']);
         }
         // detach categories
+        // Integrity constraint violation if not detach
+        $post->categories()->detach();
 
         // delete
         $post->delete();
