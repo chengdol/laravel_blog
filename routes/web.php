@@ -23,10 +23,13 @@ Route::get('/contact', 'ContactMessageController@getContactIndex')->name('contac
 // send contact message
 Route::post('/contact/sendemail', 'ContactMessageController@postContactMessage')->name('contact.send');
 
+// admin login, same name, the url should be the same!!
+Route::get('admin/login', 'AdminController@getAdminLogin')->name('admin.login');
+Route::post('admin/login', 'AdminController@postAdminLogin')->name('admin.login');
 
 
-
-Route::group(['prefix' => '/admin'], function () {
+Route::group(['prefix' => '/admin', 'middleware' => 'auth']
+    , function () {
 
     Route::get('/', 'AdminController@getIndex')->name('admin.index');
     // same name for get and post. the url should be the same!!
@@ -56,4 +59,7 @@ Route::group(['prefix' => '/admin'], function () {
     Route::get('/contact/message', 'ContactMessageController@getAdminContactIndex')->name('admin.contact.index');
     Route::get('/contact/message/delete/{contact_message_id}', 'ContactMessageController@getContactDelete')
         ->name('admin.contact.delete');
+
+    // admin logout
+    Route::get('/logout', 'AdminController@getAdminLogout')->name('admin.logout');
 });

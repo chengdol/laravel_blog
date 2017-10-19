@@ -6,7 +6,9 @@
             <li {{ Request::is('admin/category')? 'class=active' : '' }}><a href="{{ route('admin.category.index') }}">Categories</a></li>
             <li {{ Request::is('admin/contact')? 'class=active' : '' }}><a href="{{ route('admin.contact.index') }}">Contact Messages</a></li>
             {{-- always login when in this page--}}
-            <li><a href="">Logout</a></li>
+            @if(Auth::check())
+                <li><a href="{{ route('admin.logout') }}">Logout</a></li>
+            @endif
         </ul>
     </nav>
 </header>
