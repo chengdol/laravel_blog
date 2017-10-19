@@ -58,25 +58,29 @@
             <section>
                 <ul>
                     {{-- if no message --}}
-                    <li>No message</li>
+                    @if (count($contact_messages) === 0)
+                        <li>No Message</li>
                     {{-- else --}}
-                    <li>
-                        <article data-message="Body" data-id="ID">
-                            <div class="message-info">
-                                <h3>Message subject</h3>
-                                <span class="info">Sender | date</span>
-                                <div class="edit">
-                                    <nav>
-                                        <ul>
-                                            <li><a href="">view</a></li>
-                                            <li><a href="" class="danger">delete</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                            </div>
-                        </article>
-                    </li>
+                    @else
+                        @foreach($contact_messages as $contact_message)
+                            <li>
+                                <article data-message="{{ $contact_message->body }}" data-id="{{ $contact_message->id }}">
+                                    <div class="message-info">
+                                        <h3>{{ $contact_message->subject }}</h3>
+                                        <span class="info">{{ $contact_message->sender }} | {{ $contact_message->created_at }}</span>
+                                        <div class="edit">
+                                            <nav>
+                                                <ul>
+                                                    <li><a href="">view</a></li>
+                                                    <li><a href="" class="danger">delete</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </section>
         </div>
@@ -92,6 +96,7 @@
     <script type="text/javascript">
         var token = "{{ Session::token() }}"
     </script>
+    {{--put modal before contact-message.js since it will be used --}}
     <script type="text/javascript" src="{{ URL::asset("js/modal.js") }}"></script>
     <script type="text/javascript" src="{{ URL::asset("js/contact_messages.js") }}"></script>
 @endsection

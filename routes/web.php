@@ -53,4 +53,5 @@ Route::group(['prefix' => '/admin'], function () {
     Route::get('/category/delete/{category_id}', 'CategoryController@getCategoryDelete')
         ->name('admin.category.delete');
     // contact
+    Route::get('/contact/messages', 'ContactMessageController@getAdminContactIndex')->name('admin.contact.index');
 });

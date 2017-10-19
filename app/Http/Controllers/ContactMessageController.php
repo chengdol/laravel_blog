@@ -10,7 +10,7 @@ class ContactMessageController extends Controller
 {
     public function getContactIndex()
     {
-        return view("frontend.others.contact");
+        return view( "frontend.others.contact");
     }
 
     public function postContactMessage(Request $req)
@@ -35,5 +35,11 @@ class ContactMessageController extends Controller
         event(new ContactMessageReceived($message));
 
         return redirect()->route('contact')->with(['success' => 'Send message successfully!']);
+    }
+
+    public function getAdminContactIndex()
+    {
+        $contact_messages = ContactMessage::orderBy('created_at','desc')->paginate(5);
+        return view('admin.others.contact-message', ['contact_messages' => $contact_messages]);
     }
 }
