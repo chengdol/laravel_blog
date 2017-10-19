@@ -19,11 +19,12 @@ var tid = setInterval(function () {
 function modalContent(event) {
     event.preventDefault();
     var subject = event.path[5].firstElementChild.firstElementChild.innerText;
-    var sender = event.path[5].lastElementChild.firstElementChild.innerText;
+    var sender = event.path[5].firstElementChild.lastElementChild.innerText;
     var messageBody = event.path[5].dataset['message'];
     var modal = document.getElementsByClassName('modal')[0];
-    var modalSubject = document.createElement('h1');
-    var modalSender = document.createElement('h3');
+    var modalSubject = document.createElement('h2');
+    var modalSender = document.createElement('span');
+    modalSender.className = 'info';
     var modalMessage = document.createElement('p');
     modalSubject.innerText = subject;
     modalSender.innerText = sender;
@@ -37,7 +38,7 @@ function deleteContactMessage(event) {
     event.preventDefault();
     event.target.removeEventListener('click', deleteContactMessage);
     var messageId = event.path[5].dataset['id'];
-    ajax("GET", "/admin/contact/message/" + messageId + "/delete", null, messageDeleted, [event.path[5]]);
+    ajax("GET", "/admin/contact/message/delete/" + messageId, null, messageDeleted, [event.path[5]]);
 }
 
 function messageDeleted(params, success, responseObj) {
@@ -68,7 +69,7 @@ function ajax(method, url, params, callback, callbackParams) {
                 callback(callbackParams, true, obj);
             }
             else if(http.status == 400) {
-                alert("Category could not be saved. Please try again!");
+                alert("Contact message delete failed!");
                 callback(callbackParams, false);
 
             }

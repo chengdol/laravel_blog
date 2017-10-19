@@ -26,9 +26,9 @@
                             <div class="edit">
                                 <nav>
                                     <ul>
-                                        <li><a href="{{ route('admin.post.single', ['side' => 'admin', 'post_id' => $post->id]) }}">view</a></li>
-                                        <li><a href="{{ route('admin.post.edit', ['post_id' => $post->id]) }}">edit</a></li>
-                                        <li><a href="{{ route('admin.post.delete', ['post_id' => $post->id]) }}" class="danger">delete</a></li>
+                                        <li><a href="{{ route('admin.post.single', ['side' => 'admin', 'post_id' => $post->id]) }}">View</a></li>
+                                        <li><a href="{{ route('admin.post.edit', ['post_id' => $post->id]) }}">Edit</a></li>
+                                        <li><a href="{{ route('admin.post.delete', ['post_id' => $post->id]) }}" class="danger">Delete</a></li>
                                     </ul>
                                 </nav>
                             </div>

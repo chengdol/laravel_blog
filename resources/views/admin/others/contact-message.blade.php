@@ -1,7 +1,7 @@
 @extends("layouts.admin-main")
 
 @section('styles')
-    <link rel="stylesheet" href="{{ URL::asset('css/client_side/modal.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/admin_side/modal.css') }}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 @endsection
 
@@ -26,7 +26,7 @@
                             <nav>
                                 <ul>
                                     {{-- here we actually use AJAX, no route--}}
-                                    <li><a href="#">Show Message</a></li>
+                                    <li><a href="#">View</a></li>
                                     {{-- here we actually use AJAX, no route--}}
                                     <li><a href="#" class="danger">Delete</a></li>
                                 </ul>
@@ -49,15 +49,18 @@
             </section>
         @endif
     </div>
+    <div class="modal" id="contact-message-info">
+        <button class="btn" id="modal-close">close</button>
+    </div>
 @endsection
 
 @section('scripts')
     <script type="text/javascript">
-        var token = {{ Session::token() }}
+        var token = "{{ Session::token() }}"
     </script>
     {{--put modal before contact-message.js since it will be used --}}
     <script type="text/javascript" src="{{ URL::asset('js/modal.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/contact-message.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/contact-messages.js') }}"></script>
 
 @endsection
 

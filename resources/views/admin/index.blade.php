@@ -31,9 +31,9 @@
                                         <div class="edit">
                                             <nav>
                                                 <ul>
-                                                    <li><a href="{{ route('admin.post.single', ['side' => 'admin', 'post_id' => $post->id]) }}">view</a></li>
-                                                    <li><a href="{{ route('admin.post.edit', ['post_id' => $post->id]) }}">edit</a></li>
-                                                    <li><a href="{{ route('admin.post.delete', ['post_id' => $post->id]) }}" class="danger">delete</a></li>
+                                                    <li><a href="{{ route('admin.post.single', ['side' => 'admin', 'post_id' => $post->id]) }}">View</a></li>
+                                                    <li><a href="{{ route('admin.post.edit', ['post_id' => $post->id]) }}">Edit</a></li>
+                                                    <li><a href="{{ route('admin.post.delete', ['post_id' => $post->id]) }}" class="danger">Delete</a></li>
                                                 </ul>
                                             </nav>
                                         </div>
@@ -51,7 +51,7 @@
             <header>
                 <nav>
                     <ul>
-                        <li><a href="" class="btn">Show all messages</a></li>
+                        <li><a href="{{ route('admin.contact.index') }}" class="btn">Show all messages</a></li>
                     </ul>
                 </nav>
             </header>
@@ -64,18 +64,20 @@
                     @else
                         @foreach($contact_messages as $contact_message)
                             <li>
-                                <article data-message="{{ $contact_message->body }}" data-id="{{ $contact_message->id }}">
+                                <article data-message="{{ $contact_message->body }}" data-id="{{ $contact_message->id }}" class="contact-message">
                                     <div class="message-info">
                                         <h3>{{ $contact_message->subject }}</h3>
                                         <span class="info">{{ $contact_message->sender }} | {{ $contact_message->created_at }}</span>
-                                        <div class="edit">
-                                            <nav>
-                                                <ul>
-                                                    <li><a href="">view</a></li>
-                                                    <li><a href="" class="danger">delete</a></li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                    </div>
+                                    <div class="edit">
+                                        <nav>
+                                            <ul>
+                                                {{-- here we actually use AJAX, no route--}}
+                                                <li><a href="#">View</a></li>
+                                                {{-- here we actually use AJAX, no route--}}
+                                                <li><a href="#" class="danger">Delete</a></li>
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </article>
                             </li>
@@ -85,9 +87,8 @@
             </section>
         </div>
     </div>
-
     {{--pop window when click view--}}
-    <div class="modal" id="contact-messge-info">
+    <div class="modal" id="contact-message-info">
         <button class="btn" id="modal-close">close</button>
     </div>
 @endsection
@@ -98,5 +99,5 @@
     </script>
     {{--put modal before contact-message.js since it will be used --}}
     <script type="text/javascript" src="{{ URL::asset("js/modal.js") }}"></script>
-    <script type="text/javascript" src="{{ URL::asset("js/contact_messages.js") }}"></script>
+    <script type="text/javascript" src="{{ URL::asset("js/contact-messages.js") }}"></script>
 @endsection
