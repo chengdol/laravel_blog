@@ -21,7 +21,7 @@ Route::get('/about', function () {
 
 Route::get('/contact', 'ContactMessageController@getContactIndex')->name('contact');
 // send contact message
-Route::post('/contact/send', 'ContactMessageController@postContactMessage')->name('contact.send');
+Route::post('/contact/sendemail', 'ContactMessageController@postContactMessage')->name('contact.send');
 
 
 
